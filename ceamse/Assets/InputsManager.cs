@@ -53,8 +53,11 @@ public class InputsManager : MonoBehaviour
                     lastTileSelected.OnSelect(false);
             }
 
-            lastTileSelected = tile;
-            SetSelect(lastTileSelected, true);
+            if (tile.sceneObject == null || draggingObject == null)
+            {
+                lastTileSelected = tile;
+                SetSelect(lastTileSelected, true);
+            }
         }
        
     }
