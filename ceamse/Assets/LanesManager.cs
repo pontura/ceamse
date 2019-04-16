@@ -5,7 +5,7 @@ using UnityEngine;
 public class LanesManager : MonoBehaviour
 {
     public List<Lane> all;
-    float speed = 1;
+    public float speed = 100;
 
     void Start()
     {
@@ -22,13 +22,14 @@ public class LanesManager : MonoBehaviour
             lane.Move(value);
         }
     }
-    public Tile AddSceneObjectToRandomLane(SceneObject so)
+    public Tile AddSceneObjectToFirstLane(SceneObject so)
     {
-        Lane lane = GetRandomLane();
-        return lane.AddSceneObject(so);
+        Lane lane = all[1];
+        return lane.AddSceneObject(so, false);
     }
-    Lane GetRandomLane()
+    public Tile AddSceneObjectToSecondLane(SceneObject so)
     {
-        return all[Random.Range(0, all.Count)];
+        Lane lane = all[0];
+        return lane.AddSceneObject(so, true);
     }
 }

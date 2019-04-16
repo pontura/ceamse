@@ -6,36 +6,62 @@ public class Tile : MonoBehaviour
 {
     public SceneObject sceneObject;
     public GameObject selection;
+    public bool topDown;
+    float offset = 460;
 
+    public void Init(bool topDown)
+    {
+        this.topDown = topDown;
+    }
     public void Move(float value)
     {
         Vector3 pos = transform.localPosition;
-        pos.x += value;
-        transform.localPosition = pos;
-        if(pos.x>=12)
+       
+        if (topDown)
         {
-            ResetTile();
+            pos.x += value;
+            pos.y -= value;
+            transform.localPosition = pos;
+            if (pos.x >= offset)
+            {
+                ResetTile();
+            }
         }
+        else
+        {
+            pos.x -= value;
+            pos.y += value;
+            transform.localPosition = pos;
+            if (pos.x <= -offset)
+            {
+                ResetTile();
+            }
+        }
+        
     }
     void ResetTile()
     {
-        transform.localPosition = Vector3.zero;
+        if (topDown)
+            transform.localPosition = Vector3.zero;
+        else
+            transform.localPosition = Vector3.zero;
         if (sceneObject)
         {
-            Game.Instance.sceneObejctsManager.CheckResult(sceneObject);
+            print("ResetTile " + topDown);
+            Game.Instance.sceneObejctsManager.EndLane(sceneObject, topDown);
             sceneObject = null;
         }
     }
     public void AddSceneObject(SceneObject so)
     {
-        this.sceneObject = so;        
+        this.sceneObject = so;
     }
     public void OnSelect(bool isSelected)
     {
         selection.SetActive(isSelected);
     }
     public void OnGrabSceneObject()
-    {       
+    {
         sceneObject.myTile = null;
         sceneObject = null;
     }

@@ -5,10 +5,10 @@ using UnityEngine;
 public class SceneObjectsManager : MonoBehaviour
 {
     public List<SceneObject> all;
-
     public List<SceneObject> inGame;
-
     public List<SceneObject> pool;
+
+    public GameObject container;
 
     void Start()
     {
@@ -16,23 +16,30 @@ public class SceneObjectsManager : MonoBehaviour
     }
     void Loop()
     {
-        AddNewSceneObejct();
+        AddNewSceneObejct(false);
         Invoke("Loop", 3);
     }
-    void AddNewSceneObejct()
+    void AddNewSceneObejct(bool top_down)
     {
         SceneObject so = GetRandomSO();
-        
-        SceneObject newSO = null;
-        newSO = GetFromPool(so.type);
-
+        SceneObject newSO = GetFromPool(so.type);
         if (newSO == null)
-        {
             newSO = Instantiate(so);
-            newSO.transform.SetParent(transform);
-            newSO.transform.localScale = Vector3.one;            
-        }
-        Tile tile = Game.Instance.lanesManager.AddSceneObjectToRandomLane(newSO);
+
+        AddToContainer(newSO, false);
+    }
+    void AddToContainer(SceneObject newSO, bool top_down)
+    {             
+        newSO.transform.SetParent(container.transform);
+        newSO.transform.localScale = Vector3.one;
+
+        Tile tile;
+        if (top_down)
+            tile = Game.Instance.lanesManager.AddSceneObjectToSecondLane(newSO);
+        else
+            tile = Game.Instance.lanesManager.AddSceneObjectToFirstLane(newSO);
+
+        print("add sceneo top_down " + top_down);
         AddSOToTile(newSO, tile);
     }
     public void AddSOToTile(SceneObject so, Tile tile)
@@ -70,14 +77,21 @@ public class SceneObjectsManager : MonoBehaviour
         else
             return allSOOfType[Random.Range(0, allSOOfType.Count)];
     }
-    public void CheckResult(SceneObject so)
+    public void EndLane(SceneObject so, bool top_down)
     {
-        inGame.Remove(so);
-        pool.Add(so);
-        so.gameObject.SetActive(false);
-        so.myTile = null;
-
-        print("CheckResult " + so.type + so.myTile);
+        if (!top_down)
+        {
+            print("cambia " + so.type + so.myTile);
+            AddToContainer(so, true);
+        }
+        else
+        {
+            inGame.Remove(so);
+            pool.Add(so);
+            so.gameObject.SetActive(false);
+            so.myTile = null;
+            print("Wrong " + so.type + so.myTile);
+        }
     }
     SceneObject GetFromPool(SceneObject.types type)
     {

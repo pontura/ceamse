@@ -12,10 +12,6 @@ public class Game : MonoBehaviour
     {
         get
         {
-            if (mInstance == null)
-            {
-                mInstance = FindObjectOfType<Game>();
-            }
             return mInstance;
         }
     }
@@ -23,12 +19,6 @@ public class Game : MonoBehaviour
     {
         if (!mInstance)
             mInstance = this;
-        else
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-        DontDestroyOnLoad(this.gameObject);
 
         sceneObejctsManager = GetComponent<SceneObjectsManager>();
         lanesManager = GetComponent<LanesManager>();
