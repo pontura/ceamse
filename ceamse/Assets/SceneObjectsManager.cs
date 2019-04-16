@@ -30,8 +30,7 @@ public class SceneObjectsManager : MonoBehaviour
     }
     void AddToContainer(SceneObject newSO, bool top_down)
     {             
-        newSO.transform.SetParent(container.transform);
-        newSO.transform.localScale = Vector3.one;
+       
 
         Tile tile;
         if (top_down)
@@ -39,14 +38,17 @@ public class SceneObjectsManager : MonoBehaviour
         else
             tile = Game.Instance.lanesManager.AddSceneObjectToFirstLane(newSO);
 
+        newSO.transform.SetParent(tile.transform);
+        newSO.transform.localScale = Vector3.one;
+        newSO.transform.localPosition = Vector3.zero;
         AddSOToTile(newSO, tile);
     }
     public void AddSOToTile(SceneObject so, Tile tile)
     {
         tile.AddSceneObject(so);
         so.transform.gameObject.SetActive(true);
-        so.transform.SetParent(container.transform);
-        so.transform.localPosition = tile.transform.position;
+        so.transform.SetParent(tile.transform);
+        so.transform.localPosition = Vector3.zero;
         so.Init(tile);
         inGame.Add(so);
     }
@@ -54,7 +56,7 @@ public class SceneObjectsManager : MonoBehaviour
     {
         foreach (SceneObject so in inGame)
         {
-            so.Move();
+           // so.Move();
         }
     }
 
