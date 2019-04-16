@@ -9,6 +9,14 @@ public class Tile : MonoBehaviour
     public bool topDown;
     float offset = 460;
 
+    public void OnMouseOvers( bool isOver)
+    {
+        Events.OnMouseOver(isOver, gameObject);
+    }
+    public void OnPonterDown(bool isClick)
+    {
+        Events.OnClick(isClick, gameObject);
+    }
     public void Init(bool topDown)
     {
         this.topDown = topDown;
@@ -47,7 +55,6 @@ public class Tile : MonoBehaviour
             transform.localPosition = Vector3.zero;
         if (sceneObject)
         {
-            print("ResetTile " + topDown);
             Game.Instance.sceneObejctsManager.EndLane(sceneObject, topDown);
             sceneObject = null;
         }

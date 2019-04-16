@@ -39,13 +39,13 @@ public class SceneObjectsManager : MonoBehaviour
         else
             tile = Game.Instance.lanesManager.AddSceneObjectToFirstLane(newSO);
 
-        print("add sceneo top_down " + top_down);
         AddSOToTile(newSO, tile);
     }
     public void AddSOToTile(SceneObject so, Tile tile)
     {
         tile.AddSceneObject(so);
         so.transform.gameObject.SetActive(true);
+        so.transform.SetParent(container.transform);
         so.transform.localPosition = tile.transform.position;
         so.Init(tile);
         inGame.Add(so);
@@ -77,11 +77,11 @@ public class SceneObjectsManager : MonoBehaviour
         else
             return allSOOfType[Random.Range(0, allSOOfType.Count)];
     }
+    
     public void EndLane(SceneObject so, bool top_down)
     {
         if (!top_down)
         {
-            print("cambia " + so.type + so.myTile);
             AddToContainer(so, true);
         }
         else
@@ -90,7 +90,6 @@ public class SceneObjectsManager : MonoBehaviour
             pool.Add(so);
             so.gameObject.SetActive(false);
             so.myTile = null;
-            print("Wrong " + so.type + so.myTile);
         }
     }
     SceneObject GetFromPool(SceneObject.types type)
@@ -109,5 +108,9 @@ public class SceneObjectsManager : MonoBehaviour
             return soToInsert;
         }
         return null;
+    }
+    public void StartDragging(SceneObject so)
+    {
+        inGame.Remove(so);
     }
 }

@@ -9,79 +9,60 @@ public class InputsManager : MonoBehaviour
     {
         IDLE
     }
-    public SceneObject draggingObject;
-   public Tile lastTileSelected;
-    Vector2 pos;
+    public Dragger dragger;
+    public Tile tileSelected;
+    public SceneObjectsManager sceneObjectsManager;
 
-    void Start()
+
+    private void Start()
     {
-        pos = Vector3.zero;
+        Physics.queriesHitTriggers = true;
+        Events.OnMouseOver += OnMouseOver;
+        Events.OnClick += OnClick;
     }
+    void OnClick(bool isDown, GameObject go)
+    {
+        if (isDown)
+        {
+            //clickea sobre un item y lo agarra
+            Tile tile = go.GetComponent<Tile>();
+            if (tile == null) return;
+            SceneObject so = tile.sceneObject;
 
+            if (so == null) return;
+            if (dragger.sceneObject != null) return;
+            dragger.Init(so);
+            sceneObjectsManager.StartDragging(so);
+            tile.OnGrabSceneObject();
+        } else
+        {
+            //release sobre un tile y lo deja
+            if (tileSelected == null) return;
+            SceneObject so = dragger.sceneObject;
+            if (so == null) return;
+            dragger.DropSceneObject();
+            SceneObject soInNewTile = tileSelected.sceneObject;
+           
+            if(soInNewTile != null)
+            {
+                dragger.Init(soInNewTile);
+                sceneObjectsManager.StartDragging(soInNewTile);
+                tileSelected.OnGrabSceneObject();
+            }
+            sceneObjectsManager.AddSOToTile(so, tileSelected);
+        }
+    }
+    void OnMouseOver(bool isOver, GameObject go)
+    {
+        tileSelected = go.GetComponent<Tile>();
+        if(tileSelected != null)
+        {
+            tileSelected.OnSelect(isOver);
+        }
+    }
     void Update()
     {
 
-        if (Input.GetMouseButton(0) && draggingObject == null)
-        {
-            OnDown();
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            OnUp();
-        }
-
-       
-
-        if (draggingObject)
-            DragUpdate();
-
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, 100))
-        {
-            pos = hit.transform.position;
-            Tile tile = hit.transform.gameObject.GetComponent<Tile>();
-            if (tile == null)
-                return;
-
-            if (lastTileSelected != null)
-            {
-                if (lastTileSelected == tile)
-                    return;
-                else
-                    lastTileSelected.OnSelect(false);
-            }
-
-            if (tile.sceneObject == null || draggingObject == null)
-            {
-                lastTileSelected = tile;
-                SetSelect(lastTileSelected, true);
-            }
-        }
-       
     }
-    void OnDown()
-    {
-        if (lastTileSelected == null || lastTileSelected.sceneObject == null)
-            return;
-        
-        draggingObject = lastTileSelected.sceneObject;
-        lastTileSelected.OnGrabSceneObject();
-    }
-    void OnUp()
-    {
-        if (!draggingObject)
-            return;
-        Game.Instance.sceneObejctsManager.AddSOToTile(draggingObject, lastTileSelected);
-        draggingObject = null;
-    }
-    void SetSelect(Tile lastTileSelected, bool isSelected)
-    {
-         lastTileSelected.OnSelect(isSelected);
-    }
-    void DragUpdate()
-    {
-        draggingObject.transform.position = Vector3.Lerp(draggingObject.transform.position, pos, 0.1f);
-    }
+   
 }
