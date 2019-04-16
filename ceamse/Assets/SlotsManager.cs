@@ -5,10 +5,11 @@ using UnityEngine;
 public class SlotsManager : MonoBehaviour
 {
     int total = 6;
-    float separation = 63f;
+    float separation = 58f;
     public Tile tile;
     public Slots slots;
     public Transform container;
+    public Transform[] masks;
 
     void Start()
     {
@@ -18,6 +19,8 @@ public class SlotsManager : MonoBehaviour
             newSlots.transform.SetParent(container);
             newSlots.transform.localPosition = new Vector2(a * separation, -a * separation);
             newSlots.transform.localScale = Vector2.one;
+          
+            newSlots.transform.SetParent(masks[a]);
             newSlots.Init(tile, a);
         }
     }

@@ -51,6 +51,7 @@ public class SceneObjectsManager : MonoBehaviour
         so.transform.localPosition = Vector3.zero;
         so.Init(tile);
         inGame.Add(so);
+        Events.newSOAdded();
     }
     void Update()
     {
@@ -88,11 +89,15 @@ public class SceneObjectsManager : MonoBehaviour
         }
         else
         {
-            inGame.Remove(so);
-            pool.Add(so);
-            so.gameObject.SetActive(false);
-            so.myTile = null;
+            DestroySO(so);
         }
+    }
+    public void DestroySO(SceneObject so)
+    {
+        inGame.Remove(so);
+        pool.Add(so);
+        so.gameObject.SetActive(false);
+        so.myTile = null;
     }
     SceneObject GetFromPool(SceneObject.types type)
     {
