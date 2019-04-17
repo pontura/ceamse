@@ -21,6 +21,7 @@ public class Dragger : MonoBehaviour
         Vector2 dest = Input.mousePosition;
         dest.x -= Screen.width / 2;
         dest.y -= Screen.height / 2;
+        dest /= GetComponentInParent<Canvas>().scaleFactor;
         transform.localPosition = Vector3.Lerp(transform.localPosition, dest, 0.2f);
     }
 }
