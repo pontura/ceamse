@@ -29,8 +29,8 @@ public class SceneObjectsManager : MonoBehaviour
         AddToContainer(newSO, false);
     }
     void AddToContainer(SceneObject newSO, bool top_down)
-    {             
-       
+    {
+
 
         Tile tile;
         if (top_down)
@@ -57,7 +57,7 @@ public class SceneObjectsManager : MonoBehaviour
     {
         foreach (SceneObject so in inGame)
         {
-           // so.Move();
+            // so.Move();
         }
     }
 
@@ -65,14 +65,14 @@ public class SceneObjectsManager : MonoBehaviour
     {
         return all[Random.Range(0, all.Count)];
     }
-    SceneObject GetRandomOfType(SceneObject.types type )
+    SceneObject GetRandomOfType(SceneObject.types type)
     {
         List<SceneObject> allSOOfType = new List<SceneObject>();
         foreach (SceneObject so in all)
         {
-            if(so.type == type)
+            if (so.type == type)
             {
-                allSOOfType.Add( so);
+                allSOOfType.Add(so);
             }
         }
         if (allSOOfType.Count == 0)
@@ -80,7 +80,7 @@ public class SceneObjectsManager : MonoBehaviour
         else
             return allSOOfType[Random.Range(0, allSOOfType.Count)];
     }
-    
+
     public void EndLane(SceneObject so, bool top_down)
     {
         if (!top_down)
@@ -109,7 +109,7 @@ public class SceneObjectsManager : MonoBehaviour
                 soToInsert = so;
             }
         }
-        if(soToInsert != null)
+        if (soToInsert != null)
         {
             pool.Remove(soToInsert);
             return soToInsert;
@@ -119,5 +119,23 @@ public class SceneObjectsManager : MonoBehaviour
     public void StartDragging(SceneObject so)
     {
         inGame.Remove(so);
+    }
+    public SceneObject.types GetTypeByID(int id)
+    {
+        switch(id)
+        {
+            case 0:
+                return SceneObject.types.CHAPA;
+            case 1:
+                return SceneObject.types.PLASTICO;
+            case 2:
+                return SceneObject.types.PAPEL;
+            case 3:
+                return SceneObject.types.LATAS;
+            case 4:
+                return SceneObject.types.TETRA;
+            default:
+                return SceneObject.types.VIDRIO;
+        }
     }
 }

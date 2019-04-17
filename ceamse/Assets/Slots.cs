@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Slots : MonoBehaviour
 {
+    public SceneObject.types type;
     public bool working;
     public Transform container;
-    int total = 4;
-    int separation = 80;
-    int id;
+    int total = 3;
+    int separation = 120;
     public List<Tile> tiles;
     int idDone;
     private void Start()
@@ -32,22 +32,23 @@ public class Slots : MonoBehaviour
         }
     }
     void OnAddNew()
-    {
-        
+    {        
         idDone++;
-        if (idDone > total+1)
+        if (idDone > total)
         {
             EmptyAll();
         }
         else
         {
+            SceneObject sceneObject = tiles[2-(idDone-1)].sceneObject;
+            Events.OnFabricaActivate(type, sceneObject.type);
             AddItem();
         }
     }
     void AddItem()
     {
-        float dest = originalPosition.x + (separation * idDone);
-        print("dest: " + dest);
+        float dest = originalPosition.x + (separation * idDone) * transform.localScale.x;
+       
         iTween.MoveTo(this.gameObject, iTween.Hash(
               "x", dest,
               "islocal", true,
@@ -60,7 +61,7 @@ public class Slots : MonoBehaviour
     Vector3 originalPosition;
     public void Init(Tile tile, int id)
     {
-        this.id = id;
+        this.type = Game.Instance.sceneObejctsManager.GetTypeByID(id);
         for(int a= 0; a<total; a++)
         {
             Tile newTile = Instantiate(tile);

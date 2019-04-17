@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myTile: {fileID: 0}
-  type: 2
+  type: 5
 --- !u!225 &4620126225049738675
 CanvasGroup:
   m_ObjectHideFlags: 0

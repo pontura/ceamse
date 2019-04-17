@@ -13,12 +13,12 @@ public class SceneObject : MonoBehaviour
     public types type;
     public enum types
     {
-        VIDRIO,
-        PAPEL,
         CHAPA,
+        PLASTICO,
+        PAPEL,
+        LATAS,
         TETRA,
-        ALUMINIO,
-        LATA
+        VIDRIO
     }
     public void Move()
     {
