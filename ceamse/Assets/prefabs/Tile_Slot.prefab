@@ -101,7 +101,7 @@ RectTransform:
   m_GameObject: {fileID: 1475392513164224813}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.46, y: 0.46, z: 1}
+  m_LocalScale: {x: 0.3982956, y: 0.3982956, z: 0.86586}
   m_Children: []
   m_Father: {fileID: 1916050289483979259}
   m_RootOrder: 3
@@ -249,7 +249,7 @@ RectTransform:
   m_GameObject: {fileID: 5789688719195457838}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalScale: {x: 0.32286, y: 0.32286, z: 0.80715}
   m_Children: []
   m_Father: {fileID: 1916050289483979259}
   m_RootOrder: 1
@@ -308,6 +308,7 @@ GameObject:
   - component: {fileID: 6783230198394025753}
   - component: {fileID: 8213384377488109046}
   - component: {fileID: 3038924962738767056}
+  - component: {fileID: 4889683278579526840}
   m_Layer: 5
   m_Name: Tile_Slot
   m_TagString: Untagged
@@ -324,7 +325,7 @@ RectTransform:
   m_GameObject: {fileID: 8213384377488109042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.27, y: 2.27, z: 2.27}
   m_Children:
   - {fileID: 6039895294195504660}
   - {fileID: 5612882197802951632}
@@ -443,3 +444,19 @@ MonoBehaviour:
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
+--- !u!111 &4889683278579526840
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8213384377488109042}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 70d182227b5ec334db3ac0195dd3c648, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 70d182227b5ec334db3ac0195dd3c648, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
