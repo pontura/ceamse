@@ -16,7 +16,8 @@ public static class Events {
 
     public static System.Action<bool, GameObject> OnMouseOver = delegate { };
     public static System.Action<bool, GameObject> OnClick = delegate { };
-
-
+    public static System.Action<SceneObject.types> OnIncorrect = delegate { };
+    public static System.Action<SceneObject.types> OnCorrect = delegate { };
+    public static System.Action LevelComplete = delegate { };
 
 }

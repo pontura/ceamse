@@ -4,17 +4,33 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    Animation anim;
     public SceneObject sceneObject;
     public GameObject selection;
     public bool topDown;
     float offset = 460;
+    bool canInteract = true;
 
+    void Start()
+    {
+        anim = GetComponent<Animation>();
+    }
+    public void SetInteraction(bool isOn)
+    {
+        canInteract = isOn;
+        OnSelect(false);
+    }
     public void OnMouseOvers( bool isOver)
     {
+        if (!canInteract)
+            return;
+
         Events.OnMouseOver(isOver, gameObject);
     }
     public void OnPonterDown(bool isClick)
     {
+        if (!canInteract)
+            return;
         Events.OnClick(isClick, gameObject);
     }
     public void Init(bool topDown)
@@ -65,7 +81,13 @@ public class Tile : MonoBehaviour
     }
     public void OnSelect(bool isSelected)
     {
-        selection.SetActive(isSelected);
+        // selection.SetActive(isSelected);
+        if (!anim)
+            return;
+        if(isSelected)
+            anim.Play("slot_on");
+        else
+            anim.Play("slot");
     }
     public void OnGrabSceneObject()
     {
