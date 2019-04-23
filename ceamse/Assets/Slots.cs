@@ -8,7 +8,7 @@ public class Slots : MonoBehaviour
     public bool working;
     public Transform container;
     int total = 3;
-    int separation = 120;
+    int separation = 100;
     public List<Tile> tiles;
     int idDone;
     private void Start()
