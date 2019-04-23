@@ -24,7 +24,9 @@ public class Scenenario : MonoBehaviour
             Events.OnIncorrect(soType);
         }
 
-        GetFabrica(fabricaType).GetComponent<Animation>().Play(animName);
+        SceneObject so = GetFabrica(fabricaType);
+        so.GetComponent<Animation>().Play(animName);
+        so.GetComponent<SceneSfx>().Play(animName);
 
         print("pone en " + fabricaType + "  soType: " + soType + " _ " + animName);
     }
