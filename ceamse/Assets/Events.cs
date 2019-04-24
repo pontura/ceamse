@@ -8,7 +8,7 @@ public static class Events {
     public static System.Action GameOver = delegate { };
     public static System.Action NewSlotInLane = delegate { };
 
-    public static System.Action newSOAdded = delegate { };
+    public static System.Action<bool> newSOAdded = delegate { };
 
     public static System.Action<SceneObject.types, SceneObject.types> OnFabricaActivate = delegate { };
 

@@ -88,7 +88,7 @@ public class SceneObjectsManager : MonoBehaviour
         else
             so.Init(tile);
         inGame.Add(so);
-        Events.newSOAdded();
+        Events.newSOAdded(fromDrag);
     }
     void Update()
     {

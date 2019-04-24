@@ -21,7 +21,7 @@ public class Slots : MonoBehaviour
     {
         Events.newSOAdded -= newSOAdded;
     }
-    void newSOAdded()
+    void newSOAdded(bool fromDrag)
     {
         if (working)
             return;
