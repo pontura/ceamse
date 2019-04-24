@@ -11,6 +11,10 @@ public class Scenenario : MonoBehaviour
         Events.OnFabricaActivate += OnFabricaActivate;
         all = GetComponentsInChildren<SceneObject>();        
     }
+    void OnDestroy()
+    {
+        Events.OnFabricaActivate -= OnFabricaActivate;
+    }
     void OnFabricaActivate(SceneObject.types fabricaType, SceneObject.types soType)
     {
         string animName = "lose";

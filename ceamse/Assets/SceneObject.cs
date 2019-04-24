@@ -6,8 +6,34 @@ public class SceneObject : MonoBehaviour
 {
     public Tile myTile;
 
+    public GameObject[] items;
+    public int id;
+
+    public void Init(Tile _tile, int id)
+    {
+        int n = 0;
+        foreach (GameObject go in items)
+        {
+            if (id == n)
+                go.SetActive(true);
+            else
+                go.SetActive(false);
+            n++;
+        }
+        this.myTile = _tile;
+    }
     public void Init(Tile _tile)
     {
+        id = Random.Range(0, items.Length);
+        int n = 0;
+        foreach(GameObject go in items)
+        {
+            if (id == n)
+                go.SetActive(true);
+            else
+                go.SetActive(false);
+            n++;
+        }
         this.myTile = _tile;
     }
     public types type;

@@ -15,12 +15,15 @@ public class SceneObjectsManager : MonoBehaviour
         Events.NewSlotInLane += NewSlotInLane;
         levelSignal = GetComponent<LevelSignal>();
     }
+    void OnDestroy()
+    {
+        Events.NewSlotInLane -= NewSlotInLane;
+    }
     int lanesEmpty = 10;
     void NewSlotInLane()
     {
         lanesEmpty++;
 
-        print("NewSlotInLane. lanesEmpty " + lanesEmpty + " level: " + levelSignal.level);
 
         bool addSO = false;
         int laneSeparationToSO = 5;
@@ -74,13 +77,16 @@ public class SceneObjectsManager : MonoBehaviour
         newSO.transform.localPosition = Vector3.zero;
         AddSOToTile(newSO, tile);
     }
-    public void AddSOToTile(SceneObject so, Tile tile)
+    public void AddSOToTile(SceneObject so, Tile tile, bool fromDrag = false)
     {
         tile.AddSceneObject(so);
         so.transform.gameObject.SetActive(true);
         so.transform.SetParent(tile.transform);
         so.transform.localPosition = Vector3.zero;
-        so.Init(tile);
+        if (fromDrag)
+            so.Init(tile, so.id);
+        else
+            so.Init(tile);
         inGame.Add(so);
         Events.newSOAdded();
     }

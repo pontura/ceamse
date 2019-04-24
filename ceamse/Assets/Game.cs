@@ -31,9 +31,18 @@ public class Game : MonoBehaviour
 
         Events.GameOver += GameOver;
     }
+    void Destroy()
+    {
+        Events.GameOver -= GameOver;
+    }
     void GameOver()
     {
         state = states.GAME_OVER;
+        Invoke("GameOverDelayed", 2);
+    }
+    void GameOverDelayed()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Sumary");
     }
 
 }

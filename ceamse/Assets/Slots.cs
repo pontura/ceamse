@@ -5,6 +5,8 @@ using UnityEngine;
 public class Slots : MonoBehaviour
 {
     public SceneObject.types type;
+    SceneObject.types SOType;
+
     public bool working;
     public Transform container;
     int total = 3;
@@ -14,6 +16,10 @@ public class Slots : MonoBehaviour
     private void Start()
     {
         Events.newSOAdded += newSOAdded;
+    }
+    void OnDestroy()
+    {
+        Events.newSOAdded -= newSOAdded;
     }
     void newSOAdded()
     {
@@ -35,9 +41,12 @@ public class Slots : MonoBehaviour
             OnAddNew();
         }
     }
+   
     void OnAddNew()
     {        
         idDone++;
+        if(idDone>1)
+            Events.OnFabricaActivate(type, SOType);
         if (idDone > total)
         {
             EmptyAll();
@@ -45,19 +54,20 @@ public class Slots : MonoBehaviour
         else
         {
             SceneObject sceneObject = tiles[2-(idDone-1)].sceneObject;
+            SOType = sceneObject.type;
             print("OnFabricaActivate(type, sceneObject.type) " + type);
-            Events.OnFabricaActivate(type, sceneObject.type);
+
             AddItem();
         }
     }
     void AddItem()
     {
-        float dest = originalPosition.x + (separation * idDone) * transform.localScale.x;
+        float dest = originalPosition.x + (separation * idDone) * transform.localScale.x+50;
        
         iTween.MoveTo(this.gameObject, iTween.Hash(
               "x", dest,
               "islocal", true,
-              "time", 0.7f,
+              "time", 0.5f,
               "oncomplete", "OnAddNew",
               "EaseType", iTween.EaseType.linear,
               "oncompletetarget", this.gameObject

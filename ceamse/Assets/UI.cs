@@ -25,6 +25,11 @@ public class UI : MonoBehaviour
         Events.OnIncorrect += OnIncorrect;
         Events.OnCorrect += OnCorrect;
     }
+    void OnDestroy()
+    {
+        Events.OnIncorrect -= OnIncorrect;
+        Events.OnCorrect -= OnCorrect;
+    }
     void OnCorrect(SceneObject.types type)
     {
         itemsByLevel++;
@@ -40,7 +45,7 @@ public class UI : MonoBehaviour
     void Resta(float value)
     {
         life -= value;
-        if(life == 0)
+        if(life <= 0)
         {
             Events.GameOver();
             life = 0;

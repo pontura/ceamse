@@ -20,6 +20,11 @@ public class InputsManager : MonoBehaviour
         Events.OnMouseOver += OnMouseOver;
         Events.OnClick += OnClick;
     }
+    void OnDestroy()
+    {
+        Events.OnMouseOver -= OnMouseOver;
+        Events.OnClick -= OnClick;
+    }
     void OnClick(bool isDown, GameObject go)
     {
         if (isDown)
@@ -49,7 +54,7 @@ public class InputsManager : MonoBehaviour
                 sceneObjectsManager.StartDragging(soInNewTile);
                 tileSelected.OnGrabSceneObject();
             }
-            sceneObjectsManager.AddSOToTile(so, tileSelected);
+            sceneObjectsManager.AddSOToTile(so, tileSelected, true);
         }
     }
     void OnMouseOver(bool isOver, GameObject go)
