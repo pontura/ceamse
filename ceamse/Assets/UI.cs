@@ -55,8 +55,8 @@ public class UI : MonoBehaviour
             itemsByLevel = 0;
             totalItemsByLevel += 3;
         }
-        levelField.text = "NIVEL " + levelSignal.level;
-        levelFieldNums.text = "(" + itemsByLevel + "/" + totalItemsByLevel + ")";
+        levelField.text = "Nivel " + levelSignal.level;
+        levelFieldNums.text =  itemsByLevel + "/" + totalItemsByLevel ;
 
         levelBar.fillAmount = (float)itemsByLevel / (float)totalItemsByLevel;
     }
