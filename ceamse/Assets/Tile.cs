@@ -8,7 +8,7 @@ public class Tile : MonoBehaviour
     public SceneObject sceneObject;
     public GameObject selection;
     public bool topDown;
-    float offset = 460;
+    float offset = 525;
     bool canInteract = true;
 
     void Start()
@@ -58,6 +58,7 @@ public class Tile : MonoBehaviour
             transform.localPosition = pos;
             if (pos.x <= -offset)
             {
+                Events.NewSlotInLane();
                 ResetTile();
             }
         }

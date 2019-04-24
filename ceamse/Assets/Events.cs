@@ -6,6 +6,7 @@ public static class Events {
 
     public static System.Action GameStart = delegate { };
     public static System.Action GameOver = delegate { };
+    public static System.Action NewSlotInLane = delegate { };
 
     public static System.Action newSOAdded = delegate { };
 

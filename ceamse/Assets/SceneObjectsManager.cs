@@ -7,17 +7,48 @@ public class SceneObjectsManager : MonoBehaviour
     public List<SceneObject> all;
     public List<SceneObject> inGame;
     public List<SceneObject> pool;
-
     public GameObject container;
+    LevelSignal levelSignal;
 
     void Start()
     {
-        Invoke("Loop", 1);
+        Events.NewSlotInLane += NewSlotInLane;
+        levelSignal = GetComponent<LevelSignal>();
     }
-    void Loop()
+    int lanesEmpty = 10;
+    void NewSlotInLane()
     {
-        AddNewSceneObejct(false);
-        Invoke("Loop", 3);
+        lanesEmpty++;
+
+        print("NewSlotInLane. lanesEmpty " + lanesEmpty + " level: " + levelSignal.level);
+
+        bool addSO = false;
+        int laneSeparationToSO = 5;
+
+        if(levelSignal.level<2)
+            laneSeparationToSO = 4;
+        else  if (levelSignal.level < 3)
+            laneSeparationToSO = 3;
+        else if (levelSignal.level < 4)
+            laneSeparationToSO = 2;
+        else if (levelSignal.level < 5)
+            laneSeparationToSO = 1;
+
+        if (lanesEmpty > laneSeparationToSO)
+            addSO = true;
+
+        if(!addSO)
+        {
+            if (Random.Range(0, 100) < levelSignal.level*15)
+                addSO = true;
+        }
+
+
+        if (addSO)
+        {
+            AddNewSceneObejct(false);
+            lanesEmpty = 0;
+        }
     }
     void AddNewSceneObejct(bool top_down)
     {
