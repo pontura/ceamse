@@ -27,6 +27,10 @@ public class Slots : MonoBehaviour
         }
         if (!skip)
         {
+
+            foreach (Tile t in tiles)
+                t.SetInteraction(false);
+
             working = true;
             OnAddNew();
         }
@@ -41,6 +45,7 @@ public class Slots : MonoBehaviour
         else
         {
             SceneObject sceneObject = tiles[2-(idDone-1)].sceneObject;
+            print("OnFabricaActivate(type, sceneObject.type) " + type);
             Events.OnFabricaActivate(type, sceneObject.type);
             AddItem();
         }
@@ -52,7 +57,7 @@ public class Slots : MonoBehaviour
         iTween.MoveTo(this.gameObject, iTween.Hash(
               "x", dest,
               "islocal", true,
-              "time", 1,
+              "time", 0.7f,
               "oncomplete", "OnAddNew",
               "EaseType", iTween.EaseType.linear,
               "oncompletetarget", this.gameObject
@@ -78,6 +83,7 @@ public class Slots : MonoBehaviour
         {
             Game.Instance.sceneObejctsManager.DestroySO(t.sceneObject);
             t.OnGrabSceneObject();
+            t.SetInteraction(true);
         }
 
         working = false;

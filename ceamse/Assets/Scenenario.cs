@@ -8,15 +8,22 @@ public class Scenenario : MonoBehaviour
 
     void Start()
     {
-        all = GetComponentsInChildren<SceneObject>();
         Events.OnFabricaActivate += OnFabricaActivate;
+        all = GetComponentsInChildren<SceneObject>();        
     }
     void OnFabricaActivate(SceneObject.types fabricaType, SceneObject.types soType)
     {
-       
         string animName = "lose";
         if (fabricaType == soType)
+        {
+            Events.OnCorrect(soType);
             animName = "win";
+        }
+        else
+        {
+            Events.OnIncorrect(soType);
+        }
+
         GetFabrica(fabricaType).GetComponent<Animation>().Play(animName);
 
         print("pone en " + fabricaType + "  soType: " + soType + " _ " + animName);

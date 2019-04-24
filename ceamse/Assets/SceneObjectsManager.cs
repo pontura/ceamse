@@ -90,6 +90,7 @@ public class SceneObjectsManager : MonoBehaviour
         else
         {
             DestroySO(so);
+            Events.OnIncorrect(so.type);
         }
     }
     public void DestroySO(SceneObject so)
