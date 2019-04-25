@@ -7,7 +7,7 @@ public class Lane : MonoBehaviour
     public Tile tile_to_instantiate;
     public List<Tile> tiles;
     public Transform tilesContainer;
-    float separation = 35;
+    float separation = 32;
     int totalTiles = 15;
     public bool top_down;
 

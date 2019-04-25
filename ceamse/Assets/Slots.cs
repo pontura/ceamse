@@ -55,8 +55,6 @@ public class Slots : MonoBehaviour
         {
             SceneObject sceneObject = tiles[2-(idDone-1)].sceneObject;
             SOType = sceneObject.type;
-            print("OnFabricaActivate(type, sceneObject.type) " + type);
-
             AddItem();
         }
     }
@@ -94,6 +92,7 @@ public class Slots : MonoBehaviour
             Game.Instance.sceneObejctsManager.DestroySO(t.sceneObject);
             t.OnGrabSceneObject();
             t.SetInteraction(true);
+            t.Restart();
         }
 
         working = false;

@@ -38,10 +38,21 @@ public class Game : MonoBehaviour
     void GameOver()
     {
         state = states.GAME_OVER;
-        Invoke("GameOverDelayed", 2);
+        StartCoroutine(GameOverCoroutine());
     }
-    void GameOverDelayed()
+    IEnumerator GameOverCoroutine()
     {
+        float t = 1;
+        while (t > 0)
+        {
+            t -= 0.025f;
+            if (t < 0)
+                t = 0;
+            Time.timeScale = t;
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitForSecondsRealtime(5);
+        Time.timeScale = 1;
         UnityEngine.SceneManagement.SceneManager.LoadScene("Sumary");
     }
 

@@ -14,6 +14,7 @@ public class UI : MonoBehaviour
     public Image bar;
     public float life = 1;
     LevelSignal levelSignal;
+    public GameObject gameOverSignal;
 
     void Start()
     {
@@ -24,11 +25,17 @@ public class UI : MonoBehaviour
         SetLevelValue();
         Events.OnIncorrect += OnIncorrect;
         Events.OnCorrect += OnCorrect;
+        Events.GameOver += GameOver;
     }
-    void OnDestroy()
+    void Destroy()
     {
+        Events.GameOver -= GameOver;
         Events.OnIncorrect -= OnIncorrect;
         Events.OnCorrect -= OnCorrect;
+    }
+    void GameOver()
+    {
+        gameOverSignal.SetActive(true);
     }
     void OnCorrect(SceneObject.types type)
     {

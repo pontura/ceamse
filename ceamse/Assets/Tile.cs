@@ -8,12 +8,22 @@ public class Tile : MonoBehaviour
     public SceneObject sceneObject;
     public GameObject selection;
     public bool topDown;
-    float offset = 525;
+    float offset = 480;
     bool canInteract = true;
 
     void Start()
     {
         anim = GetComponent<Animation>();
+    }
+    void OnEnable()
+    {
+        Restart();
+    }
+    public void Restart()
+    {
+        if (anim != null)
+            anim.Play("slot_enter");
+        print("RESTART" + anim);
     }
     public void SetInteraction(bool isOn)
     {
