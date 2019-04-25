@@ -4,8 +4,23 @@ using UnityEngine;
 
 public class Dragger : MonoBehaviour
 {
-    public SceneObject sceneObject;
 
+    public SceneObject sceneObject;
+    public Tooltip tooltip;
+
+    void Start()
+    {
+        Events.OnSlotOver += OnSlotOver;
+    }
+    void OnDestroy()
+    {
+        Events.OnSlotOver -= OnSlotOver;
+    }
+    void OnSlotOver(bool isOver, SceneObject.types type)
+    {
+        if(sceneObject != null)
+            tooltip.SetState(isOver, type.ToString());
+    }
     public void Init(SceneObject so)
     {
         this.sceneObject = so;
@@ -15,6 +30,7 @@ public class Dragger : MonoBehaviour
     public void DropSceneObject()
     {
         this.sceneObject = null;
+        tooltip.SetState(false, "");
     }
     void Update()
     {

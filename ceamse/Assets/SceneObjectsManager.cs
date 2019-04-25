@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SceneObjectsManager : MonoBehaviour
 {
+    public List<int> allIdS;
     public List<SceneObject> all;
     public List<SceneObject> inGame;
     public List<SceneObject> pool;
@@ -12,6 +13,11 @@ public class SceneObjectsManager : MonoBehaviour
 
     void Start()
     {
+        for (int a = 0; a < 6; a++)
+            allIdS.Add(a);
+
+        Utils.Shuffle(allIdS);
+
         Events.NewSlotInLane += NewSlotInLane;
         levelSignal = GetComponent<LevelSignal>();
     }
@@ -82,11 +88,17 @@ public class SceneObjectsManager : MonoBehaviour
         tile.AddSceneObject(so);
         so.transform.gameObject.SetActive(true);
         so.transform.SetParent(tile.transform);
-        so.transform.localPosition = Vector3.zero;
+
         if (fromDrag)
+        {
             so.Init(tile, so.id);
+            so.transform.localPosition = new Vector3(0,0, 0);
+        }
         else
+        {
             so.Init(tile);
+            so.transform.localPosition = new Vector3(4, -4, 0);
+        }
         inGame.Add(so);
         Events.newSOAdded(fromDrag);
     }
@@ -100,7 +112,11 @@ public class SceneObjectsManager : MonoBehaviour
 
     SceneObject GetRandomSO()
     {
-        return all[Random.Range(0, all.Count)];
+        int level = levelSignal.level;
+        if (level < 5)
+            return all[allIdS[Random.Range(0, level+1)]];
+        else
+            return all[Random.Range(0, all.Count)];
     }
     SceneObject GetRandomOfType(SceneObject.types type)
     {

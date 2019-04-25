@@ -10,6 +10,8 @@ public class Tile : MonoBehaviour
     public bool topDown;
     float offset = 480;
     bool canInteract = true;
+    public bool isSlot;
+    public SceneObject.types type;
 
     void Start()
     {
@@ -36,6 +38,9 @@ public class Tile : MonoBehaviour
             return;
 
         Events.OnMouseOver(isOver, gameObject);
+
+        if (isSlot)
+            Events.OnSlotOver(isOver, type);
     }
     public void OnPonterDown(bool isClick)
     {

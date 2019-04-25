@@ -82,6 +82,8 @@ public class Slots : MonoBehaviour
             newTile.transform.localPosition = new Vector2(a * separation, 0);
             newTile.transform.localScale = Vector2.one;
             tiles.Add(newTile);
+            newTile.isSlot = true;
+            newTile.type = type;
         }
         originalPosition = transform.localPosition;
     }

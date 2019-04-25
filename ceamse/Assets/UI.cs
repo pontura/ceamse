@@ -18,6 +18,7 @@ public class UI : MonoBehaviour
 
     void Start()
     {
+        gameOverSignal.SetActive(false);
         levelSignal = GetComponent<LevelSignal>();
         life = 1;
         itemsByLevel = 0;
