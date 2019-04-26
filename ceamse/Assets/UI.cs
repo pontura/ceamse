@@ -28,7 +28,7 @@ public class UI : MonoBehaviour
         Events.OnCorrect += OnCorrect;
         Events.GameOver += GameOver;
     }
-    void Destroy()
+    void OnDestroy()
     {
         Events.GameOver -= GameOver;
         Events.OnIncorrect -= OnIncorrect;

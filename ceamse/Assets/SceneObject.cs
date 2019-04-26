@@ -39,10 +39,10 @@ public class SceneObject : MonoBehaviour
     public types type;
     public enum types
     {
-        CHAPA,
+        NONE,
         PLASTICO,
         PAPEL,
-        LATAS,
+        METAL,
         TETRA,
         VIDRIO
     }

@@ -13,7 +13,7 @@ public class SceneObjectsManager : MonoBehaviour
 
     void Start()
     {
-        for (int a = 0; a < 6; a++)
+        for (int a = 0; a < 5; a++)
             allIdS.Add(a);
 
         Utils.Shuffle(allIdS);
@@ -113,7 +113,7 @@ public class SceneObjectsManager : MonoBehaviour
     SceneObject GetRandomSO()
     {
         int level = levelSignal.level;
-        if (level < 5)
+        if (level < 4)
             return all[allIdS[Random.Range(0, level+1)]];
         else
             return all[Random.Range(0, all.Count)];
@@ -179,14 +179,12 @@ public class SceneObjectsManager : MonoBehaviour
         switch(id)
         {
             case 0:
-                return SceneObject.types.CHAPA;
-            case 1:
                 return SceneObject.types.PLASTICO;
-            case 2:
+            case 1:
                 return SceneObject.types.PAPEL;
+            case 2:
+                return SceneObject.types.METAL;
             case 3:
-                return SceneObject.types.LATAS;
-            case 4:
                 return SceneObject.types.TETRA;
             default:
                 return SceneObject.types.VIDRIO;
