@@ -10,6 +10,7 @@ public class Tooltip : MonoBehaviour
     void Start()
     {
         gameObject.SetActive(false);
+        transform.gameObject.SetActive(true);
     }
 
     public void SetState(bool isOn, string text)

@@ -18,7 +18,7 @@ public class Dragger : MonoBehaviour
     }
     void OnSlotOver(bool isOver, SceneObject.types type)
     {
-        if(sceneObject != null)
+        if (sceneObject != null)
             tooltip.SetState(isOver, type.ToString());
     }
     public void Init(SceneObject so)

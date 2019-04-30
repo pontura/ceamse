@@ -25,7 +25,6 @@ public class Tile : MonoBehaviour
     {
         if (anim != null)
             anim.Play("slot_enter");
-        print("RESTART" + anim);
     }
     public void SetInteraction(bool isOn)
     {
