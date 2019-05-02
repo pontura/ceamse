@@ -31,13 +31,14 @@ public class Game : MonoBehaviour
 
         Events.GameOver += GameOver;
     }
-    void Destroy()
+    void OnDestroy()
     {
         Events.GameOver -= GameOver;
     }
     void GameOver()
     {
         state = states.GAME_OVER;
+        StopAllCoroutines();
         StartCoroutine(GameOverCoroutine());
     }
     IEnumerator GameOverCoroutine()

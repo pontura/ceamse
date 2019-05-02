@@ -21,5 +21,6 @@ public static class Events {
     public static System.Action<SceneObject.types> OnIncorrect = delegate { };
     public static System.Action<SceneObject.types> OnCorrect = delegate { };
     public static System.Action LevelComplete = delegate { };
+    public static System.Action ResetGame = delegate { };
 
 }

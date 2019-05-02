@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SceneObjectsManager : MonoBehaviour
 {
+    public Scenenario scenario;
     public List<int> allIdS;
     public List<SceneObject> all;
     public List<SceneObject> inGame;
@@ -144,6 +145,7 @@ public class SceneObjectsManager : MonoBehaviour
         {
             DestroySO(so);
             Events.OnIncorrect(so.type);
+            scenario.OnVerticalLaneWrong();
         }
     }
     public void DestroySO(SceneObject so)

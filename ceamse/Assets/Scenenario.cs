@@ -5,6 +5,7 @@ using UnityEngine;
 public class Scenenario : MonoBehaviour
 {
     public SceneObject[] all;
+    public GameObject particlesWrong;
 
     void Start()
     {
@@ -40,5 +41,17 @@ public class Scenenario : MonoBehaviour
             if (f.type == type)
                 return f;
         return null;
+    }
+    public void OnVerticalLaneWrong()
+    {
+        if (Game.Instance.state != Game.states.GAME_OVER)
+            StartCoroutine( OnVerticalLaneWrongC() );
+    }
+    IEnumerator OnVerticalLaneWrongC()
+    {
+        particlesWrong.SetActive(true);
+        yield return new WaitForSeconds(0.7f);
+        if(Game.Instance.state != Game.states.GAME_OVER)
+            particlesWrong.SetActive(false);
     }
 }

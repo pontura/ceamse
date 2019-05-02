@@ -236,6 +236,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifes: 10
+  results:
+  - type: 1
+    correct_qty: 0
+  - type: 2
+    correct_qty: 0
+  - type: 3
+    correct_qty: 0
+  - type: 4
+    correct_qty: 0
+  - type: 5
+    correct_qty: 0
 --- !u!4 &117969114
 Transform:
   m_ObjectHideFlags: 0
