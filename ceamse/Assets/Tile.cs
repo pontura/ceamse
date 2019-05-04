@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Tile : MonoBehaviour
 {
@@ -63,6 +64,7 @@ public class Tile : MonoBehaviour
             if (pos.x >= offset)
             {
                 ResetTile();
+                transform.SetSiblingIndex(0);
             }
         }
         else
@@ -74,7 +76,8 @@ public class Tile : MonoBehaviour
             {
                 Events.NewSlotInLane();
                 ResetTile();
-            }
+                transform.SetSiblingIndex(100);
+            }            
         }
         
     }
@@ -83,7 +86,10 @@ public class Tile : MonoBehaviour
         if (topDown)
             transform.localPosition = Vector3.zero;
         else
+        {
+            transform.SetSiblingIndex(0);
             transform.localPosition = Vector3.zero;
+        }
         if (sceneObject)
         {
             Game.Instance.sceneObejctsManager.EndLane(sceneObject, topDown);

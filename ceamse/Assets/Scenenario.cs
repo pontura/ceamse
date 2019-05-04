@@ -33,7 +33,6 @@ public class Scenenario : MonoBehaviour
         so.GetComponent<Animation>().Play(animName);
         so.GetComponent<SceneSfx>().Play(animName);
 
-        print("pone en " + fabricaType + "  soType: " + soType + " _ " + animName);
     }
     SceneObject GetFabrica(SceneObject.types type)
     {

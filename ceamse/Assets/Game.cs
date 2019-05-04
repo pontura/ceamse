@@ -52,7 +52,7 @@ public class Game : MonoBehaviour
             Time.timeScale = t;
             yield return new WaitForEndOfFrame();
         }
-        yield return new WaitForSecondsRealtime(5);
+        yield return new WaitForSecondsRealtime(3.5f);
         Time.timeScale = 1;
         UnityEngine.SceneManagement.SceneManager.LoadScene("Sumary");
     }

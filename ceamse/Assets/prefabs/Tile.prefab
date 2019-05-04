@@ -224,6 +224,8 @@ MonoBehaviour:
   sceneObject: {fileID: 0}
   selection: {fileID: 4992481658952618799}
   topDown: 0
+  isSlot: 0
+  type: 0
 --- !u!114 &3038924962738767056
 MonoBehaviour:
   m_ObjectHideFlags: 0

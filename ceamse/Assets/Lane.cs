@@ -17,11 +17,17 @@ public class Lane : MonoBehaviour
         {
             Tile t = Instantiate(tile_to_instantiate);
             t.transform.SetParent(tilesContainer);
+            
             t.transform.localScale = Vector3.one;
-            if(top_down)
-                t.transform.localPosition = new Vector3(a*separation, -a * separation, 0);
-            else
+            if (top_down)
+            {
+                t.transform.localPosition = new Vector3(a * separation, -a * separation, 0);
+                t.transform.SetSiblingIndex(0);
+            } else
+            {
                 t.transform.localPosition = new Vector3(-a * separation, a * separation, 0);
+                t.transform.SetSiblingIndex(0);
+            }
             t.Init(top_down);
             tiles.Add(t);
         }
@@ -57,7 +63,7 @@ public class Lane : MonoBehaviour
             return tile;
         }
         else
-        {
+        {            
             float lastX = 1000;
             Tile tile = null;
             foreach (Tile t in tiles)

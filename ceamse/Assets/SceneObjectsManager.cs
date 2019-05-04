@@ -140,6 +140,7 @@ public class SceneObjectsManager : MonoBehaviour
         if (!top_down)
         {
             AddToContainer(so, true);
+            so.myTile.transform.SetSiblingIndex(0);
         }
         else
         {
@@ -191,5 +192,9 @@ public class SceneObjectsManager : MonoBehaviour
             default:
                 return SceneObject.types.VIDRIO;
         }
+    }
+    void Reorder()
+    {
+
     }
 }
