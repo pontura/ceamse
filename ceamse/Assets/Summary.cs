@@ -18,6 +18,6 @@ public class Summary : MonoBehaviour
     public void Restart()
     {
         Events.ResetGame();
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Splash");
     }
 }
