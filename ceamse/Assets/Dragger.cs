@@ -26,7 +26,12 @@ public class Dragger : MonoBehaviour
         this.sceneObject = so;
         so.transform.SetParent(transform);
         so.transform.localPosition = Vector3.zero;
-        transform.localPosition = Input.mousePosition;
+
+        Vector2 dest = Input.mousePosition;
+        dest.x -= Screen.width / 2;
+        dest.y -= Screen.height / 2;
+        dest /= GetComponentInParent<Canvas>().scaleFactor;
+        transform.localPosition = dest;
     }
     public void DropSceneObject()
     {
