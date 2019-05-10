@@ -130,7 +130,7 @@ MonoBehaviour:
   - {fileID: 4886971661798263940}
   - {fileID: 7087658332821006779}
   id: 0
-  type: 4
+  type: 5
 --- !u!225 &4620126225049738675
 CanvasGroup:
   m_ObjectHideFlags: 0

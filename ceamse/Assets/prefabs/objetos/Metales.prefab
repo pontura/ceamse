@@ -206,7 +206,7 @@ MonoBehaviour:
   - {fileID: 8776580511728265304}
   - {fileID: 360644595426043713}
   id: 0
-  type: 2
+  type: 3
 --- !u!225 &5824895646346577352
 CanvasGroup:
   m_ObjectHideFlags: 0
