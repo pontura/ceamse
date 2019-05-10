@@ -5,7 +5,7 @@ using UnityEngine;
 public class SlotsManager : MonoBehaviour
 {
     int total = 5;
-    float separation = 66.5f;
+    float separation = 72;
     public Tile tile;
     public Slots slots;
     public Transform container;
