@@ -2076,7 +2076,7 @@ PrefabInstance:
     - target: {fileID: 1441321241, guid: ae6cced77b8975e408f9b9d862dfa373, type: 3}
       propertyPath: particlesWrong
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1613561240}
     - target: {fileID: 663984898047638168, guid: ae6cced77b8975e408f9b9d862dfa373,
         type: 3}
       propertyPath: m_IsActive
@@ -3051,6 +3051,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1612122448}
   m_CullTransparentMesh: 0
+--- !u!1 &1613561240 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 663984898047638168, guid: ae6cced77b8975e408f9b9d862dfa373,
+    type: 3}
+  m_PrefabInstance: {fileID: 1375813907}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1624369768
 GameObject:
   m_ObjectHideFlags: 0
