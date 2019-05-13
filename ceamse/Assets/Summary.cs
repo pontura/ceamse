@@ -30,9 +30,9 @@ public class Summary : MonoBehaviour
             SceneObject so = GetMask(ri.type);
             so.GetComponentInChildren<SummaryNum>().Init(ri.correct_qty);
             if (ri.correct_qty == 0)
-                so.gameObject.SetActive(true);
+                so.gameObject.GetComponent<Image>().enabled = true;
             else
-                so.gameObject.SetActive(false);
+                so.gameObject.GetComponent<Image>().enabled = false;
         }
     }
     SceneObject GetMask(SceneObject.types type)
