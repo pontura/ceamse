@@ -9,8 +9,8 @@ public class Slots : MonoBehaviour
 
     public bool working;
     public Transform container;
-    int total = 3;
-    int separation = 100;
+    int total = 2;
+    int separation = 150;
     public List<Tile> tiles;
     int idDone;
     private void Start()
@@ -53,7 +53,7 @@ public class Slots : MonoBehaviour
         }
         else
         {
-            SceneObject sceneObject = tiles[2-(idDone-1)].sceneObject;
+            SceneObject sceneObject = tiles[1-(idDone-1)].sceneObject;
             SOType = sceneObject.type;
             AddItem();
         }

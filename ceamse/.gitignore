@@ -1,13 +1,25 @@
 # =============== #
+# FIREBASE #
+# =============== #
+Assets/Editor Default Resources/Firebase*
+Assets/Firebase*
+Assets/Parse*
+Assets/PlayServicesResolver*
+google-services.json
+google-services-desktop.json
+GoogleService-Info.plist
+
+# =============== #
 # Unity generated #
 # =============== #
-.vs/
 Temp/
 Obj/
 UnityGenerated/
 Library/
 web/
+Packages/
 Assets/AssetStoreTools*
+Assets/Plugins*
 .vs/
 .gradle/
 
@@ -15,7 +27,6 @@ Assets/AssetStoreTools*
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
 ExportedObj/
-*.vs
 *.svd
 *.userprefs
 *.csproj
@@ -25,13 +36,6 @@ ExportedObj/
 *.user
 *.unityproj
 *.booproj
-
-# ============ #
-# VIM #
-# ============ #
-*~
-*.swp
-*.swo
 
 # ============ #
 # OS generated #
@@ -64,3 +68,5 @@ Assets/models/boxer/Materials/Material #31.mat.meta
 Assets/models/animaciones/character.FBX
 Assets/models/animaciones/character.FBX.meta
 Assets/Plugins/iOS/Fabric/Crashlytics.framework/Crashlytics
+ProjectSettings/InputManager____________mesa.asset
+ProjectSettings/InputManager_______________mesa.asset
