@@ -451,7 +451,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: NaN, w: 1.02e-43}
+  m_BoundingSphereOverride: {x: 1.53e-41, y: -1.0811213e-12, z: 5.68e-43, w: -5.491453e+17}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2147,20 +2147,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scenario
       objectReference: {fileID: 0}
-    - target: {fileID: 6535984892258160433, guid: ae6cced77b8975e408f9b9d862dfa373,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1441321241, guid: ae6cced77b8975e408f9b9d862dfa373, type: 3}
-      propertyPath: particlesWrong
-      value: 
-      objectReference: {fileID: 1613561240}
-    - target: {fileID: 663984898047638168, guid: ae6cced77b8975e408f9b9d862dfa373,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6535984892258160434, guid: ae6cced77b8975e408f9b9d862dfa373,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3131,12 +3117,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1612122448}
   m_CullTransparentMesh: 0
---- !u!1 &1613561240 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 663984898047638168, guid: ae6cced77b8975e408f9b9d862dfa373,
-    type: 3}
-  m_PrefabInstance: {fileID: 1375813907}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1624369768
 GameObject:
   m_ObjectHideFlags: 0
