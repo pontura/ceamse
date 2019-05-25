@@ -30,7 +30,9 @@ public class Scenenario : MonoBehaviour
         }
 
         SceneObject so = GetFabrica(fabricaType);
-        so.GetComponent<Animation>().Play(animName);
+        Animation anim = so.GetComponent<Animation>();
+        anim[animName].normalizedTime = 0;
+        anim.Play(animName);
         so.GetComponent<SceneSfx>().Play(animName);
 
     }
