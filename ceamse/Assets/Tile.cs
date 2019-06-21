@@ -114,5 +114,12 @@ public class Tile : MonoBehaviour
     {
         sceneObject.myTile = null;
         sceneObject = null;
+        Restart();
+    }
+    public void BadItem()
+    {
+        if (!anim)
+            return;
+        anim.Play("slot_on_bad");
     }
 }

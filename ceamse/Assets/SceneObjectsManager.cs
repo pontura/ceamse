@@ -72,7 +72,6 @@ public class SceneObjectsManager : MonoBehaviour
     void AddToContainer(SceneObject newSO, bool top_down)
     {
 
-
         Tile tile;
         if (top_down)
             tile = Game.Instance.lanesManager.AddSceneObjectToSecondLane(newSO);
@@ -86,20 +85,29 @@ public class SceneObjectsManager : MonoBehaviour
     }
     public void AddSOToTile(SceneObject so, Tile tile, bool fromDrag = false)
     {
-        tile.AddSceneObject(so);
+        tile.AddSceneObject(so);      
+
         so.transform.gameObject.SetActive(true);
         so.transform.SetParent(tile.transform);
+
+        if (tile.type != SceneObject.types.NONE)
+        {
+           // print("so.type: " + so.type + " tile.type): " + tile.type + " fromDrag: " + fromDrag);
+        }
 
         if (fromDrag)
         {
             so.Init(tile, so.id);
             so.transform.localPosition = new Vector3(0,0, 0);
+            if (so.type != tile.type)
+                tile.BadItem();
         }
         else
-        {
+        {           
             so.Init(tile);
             so.transform.localPosition = new Vector3(4, -4, 0);
         }
+       
         inGame.Add(so);
         Events.newSOAdded(fromDrag);
     }

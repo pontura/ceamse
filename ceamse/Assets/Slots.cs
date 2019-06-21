@@ -31,19 +31,21 @@ public class Slots : MonoBehaviour
             if (t.sceneObject == null)
                 skip = true;
         }
+
         if (!skip)
         {
+            OnAddNew();
 
-            foreach (Tile t in tiles)
-                t.SetInteraction(false);
+           // foreach (Tile t in tiles)
+              //  t.SetInteraction(false);
 
             working = true;
-            OnAddNew();
+            
         }
     }
    
     void OnAddNew()
-    {        
+    {
         idDone++;
         if(idDone>1)
             Events.OnFabricaActivate(type, SOType);
